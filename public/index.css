@@ -1,0 +1,79 @@
+#createIncident{
+    float:right;
+}
+#newIncident{
+    width:400px;
+}
+.newTagForm{
+    margin-right:4px;
+}
+.deleteLogForm, .deleteForm { 
+    float:left;
+    margin:0px;
+    margin-right:8px;
+}
+
+.deleteRoutineTypeForm{
+    float:left;
+    margin:0px;
+}
+input.logRoutine{
+    margin-left:4px;
+}
+div.logRoutine{
+    margin-left:16px; /* Not working */
+}
+.activeTagList, .routineTypes, .showNewIncidentTags, .hideNewIncidentTags {
+    clear:both;
+}
+
+.form, .newRoutine, .hideNewIncidentTags, .newTagList, .hideNewRoutineTags{
+    display:none;
+}
+.textButton { 
+     background:none!important;
+     border:none; 
+     padding:0!important;
+     font: inherit;
+     /*border is optional*/
+     cursor: pointer;
+}   
+
+.incidentCreatedAt{
+}
+.incidentReport{
+    padding:8px;
+    font-style:italic;
+}
+.logIncident{
+    background-color:grey;
+    width:800px;
+    clear:both;
+    padding:4px;
+}
+.logIncidentTitle{
+    font-weight:bold;
+}
+.tagDeleteButton{
+    color:red;
+    font-size:12px;
+    margin:0px;
+}
+.tagName{
+float:left;
+padding-right:4;
+}
+.deleteTagForm{
+float:left;
+margin:0px;
+}
+
+.activeRoutineTagList{
+    margin-top:16px;
+}
+.activeIncidentTagList{
+    margin-top:8px;
+}
+.newTagMenu{
+    padding-top:4px;
+}
