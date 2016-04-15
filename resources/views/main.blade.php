@@ -1,8 +1,11 @@
 <html>
 <head>
+    <title>
+        Work Log
+    </title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" type="text/css" href="index.css">
-    <script src="https://code.jquery.com/jquery-1.12.3.min.js"> </script>
+    <script src="jquery-1.12.3.min.js"> </script>
     <script src="index.js"> </script>
 </head>
 <body>
@@ -111,9 +114,11 @@
         <?php $old_time = $time; ?>
     @endif
     <div class='logEntry'>
+        <a name='entry{{ $log_entry->id }}'></a>
         <form method="POST" action="/work-log/public/log/{{ $log_entry->id }}" class='deleteLogForm'>
             {{ csrf_field() }}
             {{  method_field("DELETE") }}
+            <input type='hidden' name='logEntryID' value='{{$log_entry->id}}' />
             <input type='submit' value="X" />
         </form>
         @if ($log_entry->routine_id!=0 && $log_entry->incident_id==0)
@@ -127,6 +132,7 @@
                         <form method="POST" action='/work-log/public/tag/{{ $tag->id }}' class='deleteTagForm'>
                             {{ csrf_field() }}
                             {{ method_field("DELETE") }}
+                            <input type='hidden' name='logEntryID' value='{{$log_entry->id}}' />
                             <input type='submit' class='textButton tagDeleteButton' value='x' />
                         </form>
                         <div class='tagName'>
@@ -150,6 +156,7 @@
                 <input type='hidden' name='newTagType' value='{{ $tag_type->id }}' />
                 <input type='hidden' name='incidentID' value='0' />
                 <input type='hidden' name='routineID' value='{{ $log_entry->routine_id }}' />
+                <input type='hidden' name='logEntryID' value='{{$log_entry->id}}' />
                 <input type='submit' class='textButton' value='{{ $tag_type->name }}' />
             </form> 
             @endforeach
@@ -171,6 +178,7 @@
                         <form method="POST" action='/work-log/public/tag/{{ $tag->id }}' class='deleteTagForm'>
                             {{ csrf_field() }}
                             {{ method_field("DELETE") }}
+                            <input type='hidden' name='logEntryID' value='{{$log_entry->id}}' />
                             <input type='submit' class='textButton tagDeleteButton' value='x' />
                         </form>
                         <div class='tagName'>
@@ -193,6 +201,7 @@
                 <input type='hidden' name='newTagType' value='{{ $tag_type->id }}' />
                 <input type='hidden' name='incidentID' value='{{ $log_entry->incident_id }}' />
                 <input type='hidden' name='routineID' value='0' />
+                <input type='hidden' name='logEntryID' value='{{$log_entry->id}}' />
                 <input type='submit' class='textButton' value='{{ $tag_type->name }}' />
             </form> 
             @endforeach

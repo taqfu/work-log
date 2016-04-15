@@ -1,3 +1,7 @@
+h1, h2{
+    clear:both;
+    margin-bottom:4px;
+}
 #createIncident{
     float:right;
 }
@@ -5,6 +9,7 @@
     width:400px;
 }
 .newTagForm{
+    float:left;
     margin-right:4px;
 }
 .deleteLogForm, .deleteForm { 
@@ -76,4 +81,8 @@ margin:0px;
 }
 .newTagMenu{
     padding-top:4px;
+}
+.logEntry{
+    margin-bottom:32px;
+
 }
