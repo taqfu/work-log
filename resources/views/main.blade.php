@@ -9,11 +9,6 @@
     <script src="index.js"> </script>
 </head>
 <body>
-@if (count($errors) > 0)
-    @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-    @endforeach
-@endif
 <div id='menu'>
     <input type='button' class="textButton menuButton" value='[ - ]'/>
     <input type='button' class="textButton menuButton" value='[ Routine ]'/>
@@ -22,77 +17,16 @@
 </div>
 
 <div id='newTag' class='form'>  
-    <form method="POST" action="/work-log/public/tag/type">
-        {{ csrf_field() }}
-        <input name="tagTypeName" type='text'/> 
-        <input id="createTag" type='submit' value='Create Tag' />
-    </form>
-@foreach ($tag_types as $tag_type)
-    <div style='clear:both;'>
-        <form method="POST" action="/work-log/public/tag/type/{{ $tag_type->id }}" class="deleteForm">
-            {{ csrf_field() }}
-           {{ method_field('DELETE') }}
-           <input type='submit' value='X' />
-        </form> 
-    {{ $tag_type->name }}
-    </div>
-@endforeach
+@include ('TagType.create')
+@include ('TagType.index')
 </div>
 
 <div id='newIncident' class='form'>
-    <form method="POST" action="/work-log/public/incident">
-    {{ csrf_field() }}
-    <div> 
-        <input id='nowRadio1' name='incidentWhen' type='radio' value='now' checked/>
-        Now.
-    </div>
-    <div>
-        <input id='timestampRadio1' name='incidentWhen' type='radio' value='timestamp'/>
-        <select id='month1' class='timeSelector1' name="month" ><select>
-        <select id='day1' class='timeSelector1' name="day"></select>
-        <select id='year1' class='timeSelector1' name="year"></select>
-        <select id='hour1' class='timeSelector1' name="hour"></select>
-        <select id='minute1' class='timeSelector1' name="minute"></select>
-    </div>
-        <textarea id='report' name='report' maxlength="21000" style='height:100px;width:400px;'></textarea> 
-        <input id='createIncident' type='submit'  value='Create Incident'/>
-    </form>
+@include ('Incident.create')
 </div>
 <div id='newRoutine' class='form' >
-    <div id="newRoutineContainer">
-        <form method="POST" action="/work-log/public/routine/type">
-        <input type='button' id="showNewRoutine" class='textButton' value='[ + ]' />
-        <input type='button' id="hideNewRoutine" class='textButton newRoutine' value='[ - ]' />
-            {{ csrf_field() }}
-            <input id="newRoutineType" name="newRoutineType" class="newRoutine" type='text' />
-            <input id="createNewRoutine" class="newRoutine" type='submit' value='New Routine' />
-        </form>
-    </div>
-@if (count($routine_types)>0)
-    <div> 
-        <input  id='nowRadio2' name='routineWhen' type='radio' value='now' checked/>
-        Now.
-    </div>
-    <div>
-        <input id='timestampRadio2' name='routineWhen' type='radio' value='timestamp'/>
-        <select id='month2' class='timeSelector2' name="month" ><select>
-        <select id='day2' class='timeSelector2' name="day"></select>
-        <select id='year2' class='timeSelector2' name="year"></select>
-        <select id='hour2' class='timeSelector2' name="hour"></select>
-        <select id='minute2' class='timeSelector2' name="minute"></select>
-    </div>
-    @foreach($routine_types as $routine_type)
-        <div class='routineTypes'>
-            <form method="POST" action="/work-log/public/routine/type/{{ $routine_type->id }}" class='deleteRoutineTypeForm'>
-                {{ csrf_field() }}
-                {{ method_field('DELETE') }}
-                <input type='submit' value='X' /> 
-            </form>
-            <input id="routineType{{ $routine_type->id }}" type='button' 
-              class='textButton logRoutine' value='{{ $routine_type->name }}' />   
-        </div>      
-    @endforeach 
-@endif
+@include ('RoutineType.create')
+@include ('Routine.create')
 </div>
 
 <div style="clear:both;margin-top:16px;">
@@ -100,6 +34,7 @@
     $old_date = 0;
     $old_time = 0;
 ?>
+<?php /*
 @foreach ($log_entries as $log_entry)
     <?php
         $date = date("m/d/y", strtotime($log_entry->when));
@@ -209,111 +144,8 @@
         @endif
     </div>
 @endforeach
+*/?>
 </div>
 </html>
 <script>
-for (num=1;num<=2;num++){
-    $("#month" + num).html(fetchMonthOptions());
-    $("#day" + num).html(fetchDayOptions());
-    $("#year" + num).html(fetchYearOptions());
-    $("#hour" + num).html(fetchHourOptions(true));
-    $("#minute" + num).html(fetchMinuteOptions(true));
-}
-$(".menuButton").click(function(event){
-    $(".form").hide();
-    if (event.target.value=="[ Routine ]"){
-        $("#newRoutine").show();
-    } else if (event.target.value=="[ Incident ]"){
-        $("#newIncident").show();
-    } else if (event.target.value=="[ Tag ]"){
-        $("#newTag").show();
-    }
-});
-$("#hideNewRoutine").click(function(event){
-    $("#showNewRoutine").show();
-    $(".newRoutine").hide();
-});
-$("#showNewRoutine").click(function(event){
-    $("#showNewRoutine").hide();
-    $(".newRoutine").show();
-});
-function fetchDayOptions(){
-    d = new Date();
-    currentDay = d.getDate();
-    
-    var string = "";
-    for (day=1;day<32;day++){
-        dayValue = day<10
-          ? "0" + day
-          : day;
-        selected = (day === currentDay)
-          ? "selected"
-          : "";
-        string = string + "<option " + selected + " value='" + dayValue + "'>" + day + "</option>";
-    }
-    return string;
-}
-function fetchHourOptions(clock){
-    var string = "";
-    d = new Date();
-    currentHour = d.getHours();
-    if (clock===true){
-        start=0;
-    } else if (clock===false){
-        start=1;
-    }   
-    for (hour=start;hour<24;hour++){
-        selected = hour === currentHour
-          ? "selected"
-          : "";
-        if (clock && hour<10){
-            hour = "0"+hour;
-        }
-        string = string + "<option " + selected + " value='"+hour+"'>" + hour + "</option>";
-    }
-    return string;
-}
-function fetchMinuteOptions(clock){
-    d = new Date();
-    currentMinute = d. getMinutes();
-    var string = "";
-    if (clock===true){
-        start=0;
-    } else if (clock===false){
-        start=1;
-    }
-    for (minute=start;minute<60;minute++){
-        selected = (clock && minute === currentMinute)
-          ? "selected"
-          : "";
-        if (clock && minute<10){
-            minute = "0" + minute;
-        }
-        string = string + "<option " +  selected + " value='"+minute+"'>" + minute + "</option>";
-    }
-    return string;
-}
-function fetchMonthOptions(){
-    string = "";
-    var months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    d =new Date();
-    currentMonth = d.getMonth();
-    for (month=currentMonth-1;month<=currentMonth+1;month++){
-        monthValue = month<10
-          ? "0" + (month + 1)
-          : (month + 1);
-        selected = currentMonth===month
-          ? "selected"
-          : "";
-        string = string + "<option " + selected + " value='" + monthValue + "'>" + months[month] + "</option>";          
-    }
-    return string;
-}
-function fetchYearOptions(){
-    var string = "";
-    d = new Date();
-    year=d.getFullYear();
-    string = "<option value='"+(year-1)+"'>" + (year-1) + "</option><option selected value='"+year+"'>" + year + "</option><option value='"+(year+1)+"'>" + (year+1) + "</option>";
-    return string;
-}
 </script>

@@ -26,9 +26,9 @@ Route::get('/', function () {
    ]);
 });
 
-Route::resource('/incident', 'IncidentController');
+Route::resource('incident', 'IncidentController');
 Route::resource('/log', 'LogEntryController');
-Route::resource('/routine/type', 'RoutineTypeController');
-Route::resource('/routine', 'RoutineController');
+Route::resource('RoutineType', 'RoutineTypeController');
+Route::resource('routine', 'RoutineController');
 Route::resource('/tag', 'TagController');
-Route::resource('/tag/type', 'TagTypeController');
+Route::resource('TagType', 'TagTypeController');
