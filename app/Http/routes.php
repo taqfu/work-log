@@ -30,12 +30,10 @@ Route::get('/', ["as"=>"today", function ($when=null) {
         
    ]);
 }]);
-Route::get('/log', function () {
-});
 
 Route::resource('incident', 'IncidentController');
 Route::resource('log', 'LogEntryController');
 Route::resource('RoutineType', 'RoutineTypeController');
 Route::resource('routine', 'RoutineController');
-Route::resource('/tag', 'TagController');
+Route::resource('tag', 'TagController');
 Route::resource('TagType', 'TagTypeController');

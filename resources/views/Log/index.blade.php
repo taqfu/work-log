@@ -35,7 +35,7 @@
                 Created {{$log_entry->created_at}}
             </div>
             <div class='incidentReport'>
-                {{ $log_entry -> incident -> report }} 
+                {!! nl2br($log_entry -> incident -> report) !!} 
             </div>
         </div>
         @include ("IncidentTag")
