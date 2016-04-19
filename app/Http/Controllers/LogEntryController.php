@@ -6,9 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\LogEntry;
+use App\RoutineType;
 use App\Routine;
+use App\Tag;
+use App\TagType;
 use App\Incident;
 use DB;
+use View;
 class LogEntryController extends Controller
 {
     /**
@@ -18,7 +22,16 @@ class LogEntryController extends Controller
      */
     public function index()
     {
-        //
+    
+    return View :: make('main', [
+        "log_entries" => LogEntry ::orderBy("when", "desc")->get(),
+        "routines" => Routine :: orderBy("when", "desc")->get(),
+        "routine_types" => RoutineType ::orderBy("name", "asc")-> get(),
+        "tag_types" => TagType :: orderBy("name", "asc")->get(),
+        "tags" => Tag :: orderBy("created_at", "asc")->get()
+        
+   ]);
+    
     }
 
     /**
@@ -39,7 +52,7 @@ class LogEntryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // This is done under the RoutineController and IncidentController
     }
 
     /**

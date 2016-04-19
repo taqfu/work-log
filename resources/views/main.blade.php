@@ -15,12 +15,13 @@
 </head>
 <body>
 <div id='menu'>
+    <a href="{{ route('today') }}">[ Home ]</a>
     <input type='button' class="textButton menuButton" value='[ - ]'/>
     <input type='button' class="textButton menuButton" value='[ Routine ]'/>
     <input type='button' class="textButton menuButton" value='[ Incident ]'/>
     <input type='button' class="textButton menuButton" value='[ Tag ]'/>
+    <a href="{{ route('log.index') }}">[ All Entries ]</a>
 </div>
-
 <div id='newTag' class='form'>  
 @include ('TagType.create')
 @include ('TagType.index')
@@ -37,4 +38,5 @@
 <div style="clear:both;margin-top:16px;">
 @include ("Log.index")
 </div>
+</body>
 </html>
