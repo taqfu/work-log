@@ -1,4 +1,7 @@
-h1, h2{
+h1{
+    text-align:center;
+}
+h1, h3{
     clear:both;
     margin-bottom:4px;
 }
