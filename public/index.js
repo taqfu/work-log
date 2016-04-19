@@ -2,13 +2,6 @@
 $(document.body).ready(function () {
     $("#incidentNow").prop("checked", true);
     $("#routineNow").prop("checked", true);
-    for (num=1;num<=2;num++){
-        $("#month" + num).html(fetchMonthOptions());
-        $("#day" + num).html(fetchDayOptions());
-        $("#year" + num).html(fetchYearOptions());
-        $("#hour" + num).html(fetchHourOptions(true));
-        $("#minute" + num).html(fetchMinuteOptions(true));
-    }
     $(".menuButton").click(function(event){
         $(".form").hide();
         if (event.target.value=="[ Routine ]"){
@@ -30,8 +23,8 @@ $(document.body).ready(function () {
         if (when==="now"){
             var timestamp="now";
         } else if (when==="timestamp"){
-            var timestamp = $("#year2").val() + "-" + $("#month2").val() + "-" + $("#day2").val() 
-              + " " + $("#hour2").val() + ":" + $("#minute2").val();
+            var timestamp = $("#routineYear").val() + "-" + $("#routineMonth").val() + "-" + $("#routineDay").val() 
+              + " " + $("#routineHour").val() + ":" + $("#routineMinute").val();
         }
         logRoutine(id,timestamp);
     });

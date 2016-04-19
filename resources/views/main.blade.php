@@ -7,6 +7,11 @@
     <link rel="stylesheet" type="text/css" href="index.css">
     <script src="jquery-1.12.3.min.js"> </script>
     <script src="index.js"> </script>
+    <style>
+    .form {
+        display:none;
+    }
+    </style>
 </head>
 <body>
 <div id='menu'>
@@ -34,7 +39,6 @@
     $old_date = 0;
     $old_time = 0;
 ?>
-<?php /*
 @foreach ($log_entries as $log_entry)
     <?php
         $date = date("m/d/y", strtotime($log_entry->when));
@@ -144,8 +148,5 @@
         @endif
     </div>
 @endforeach
-*/?>
 </div>
 </html>
-<script>
-</script>
