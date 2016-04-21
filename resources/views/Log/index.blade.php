@@ -24,21 +24,21 @@
             <input type='submit' value="X" />
         </form>
         @if ($log_entry->routine_id!=0)
-        <div class='logRoutine'>
-            {{ $log_entry -> routine-> type ->name}} 
-        </div>
-        @include ("RoutineTag")
+            <div class='logRoutine'>
+                {{ $log_entry -> routine-> type ->name}} 
+            </div>
+            @include ("RoutineTag")
         @elseif ($log_entry->incident_id!=0)
-        <div class='logIncidentTitle'>Incident Report  </div> 
-        <div class='logIncident'>
-            <div class='incidentCreatedAt'>
-                Created {{$log_entry->created_at}}
+            <div class='logIncidentTitle'>Incident Report  </div> 
+            <div class='logIncident'>
+                <div class='incidentCreatedAt'>
+                    Created {{$log_entry->created_at}}
+                </div>
+                <div class='incidentReport'>
+                    {!! nl2br($log_entry -> incident -> report) !!} 
+                </div>
             </div>
-            <div class='incidentReport'>
-                {!! nl2br($log_entry -> incident -> report) !!} 
-            </div>
-        </div>
-        @include ("IncidentTag")
+            @include ("IncidentTag")
         @endif
     </div>
 @endforeach

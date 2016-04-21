@@ -20,6 +20,7 @@
     <input type='button' class="textButton menuButton" value='[ Routine ]'/>
     <input type='button' class="textButton menuButton" value='[ Incident ]'/>
     <input type='button' class="textButton menuButton" value='[ Tag ]'/>
+    <a href="{{ route('yesterday') }}">[ Yesterday ]</a>
     <a href="{{ route('log.index') }}">[ All Entries ]</a>
 </div>
 <div id='newTag' class='form'>  

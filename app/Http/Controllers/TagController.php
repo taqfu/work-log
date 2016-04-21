@@ -45,7 +45,7 @@ class TagController extends Controller
         }
         $tag->type_id = $request->newTagType;
         $tag->save();
-        return redirect("/#entry".$request->logEntryID);
+        return redirect("$request->route/#entry".$request->logEntryID);
     }
 
     /**

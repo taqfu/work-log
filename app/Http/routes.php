@@ -15,10 +15,25 @@ use \App\TagType;
 |
 */
 
-Route::get('/', ["as"=>"today", function ($when=null) {
+Route::get('/', ["as"=>"today", function () {
     $today = date ("Y-m-d");
     $end_date = "$today 23:59:59";
     $begin_date = "$today 00:00:00";
+    return view('main' , [
+        "routine_types" => RoutineType ::orderBy("name", "asc")-> get(),
+        "log_entries" => LogEntry :: where('when', '<', $end_date)
+          ->where('when', '>', $begin_date)
+          ->orderBy("when", "desc")->get(),
+        "routines" => Routine :: orderBy("when", "desc")->get(),
+        "tag_types" => TagType :: orderBy("name", "asc")->get(),
+        "tags" => Tag :: orderBy("created_at", "asc")->get()
+        
+   ]);
+}]);
+Route::get('/yesterday', ["as"=>"yesterday", function () {
+    $yesterday = date('Y-m-d',strtotime("-1 days"));
+    $end_date = "$yesterday 23:59:59";
+    $begin_date = "$yesterday 00:00:00";
     return view('main' , [
         "routine_types" => RoutineType ::orderBy("name", "asc")-> get(),
         "log_entries" => LogEntry :: where('when', '<', $end_date)
