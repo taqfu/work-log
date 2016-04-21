@@ -45,7 +45,7 @@ class TagController extends Controller
         }
         $tag->type_id = $request->newTagType;
         $tag->save();
-        return redirect("$request->route/#entry".$request->logEntryID);
+        return redirect("/work-log/public/$request->route/#entry".$request->logEntryID);
     }
 
     /**
@@ -88,10 +88,10 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $tag = new Tag;
         $tag->where("id", $id)->delete();
-        return redirect ("/");
+        return redirect("/work-log/public/$request->route/#entry".$request->logEntryID);
     }
 }

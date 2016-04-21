@@ -5,6 +5,7 @@
                 <form method="POST" action="{{ route('tag.destroy', ['id'=>$tag->id])}}" class='deleteTagForm'>
                     {{ csrf_field() }}
                     {{ method_field("DELETE") }}
+                    <input type='hidden' name='route' value="{{Route::getCurrentRoute()->getPath()}}">
                     <input type='hidden' name='logEntryID' value='{{$log_entry->id}}' />
                     <input type='submit' class='textButton tagDeleteButton' value='x' />
                 </form>
@@ -25,12 +26,14 @@
     @foreach ($tag_types as $tag_type)
     <form class='newTagForm' method="POST" action="{{ route('tag.store') }}">
         {{ csrf_field () }}         
+        <input type='hidden' name='route' value="{{Route::getCurrentRoute()->getPath()}}">
         <input type='hidden' name='newTagType' value='{{ $tag_type->id }}' />
         <input type='hidden' name='incidentID' value='0' />
         <input type='hidden' name='routineID' value='{{ $log_entry->routine_id }}' />
         <input type='hidden' name='logEntryID' value='{{$log_entry->id}}' />
         <input type='submit' class='textButton' value='{{ $tag_type->name }}' />
-    </form> 
+    </form>
+    <div class='tagSeparator'>/</div>
     @endforeach
 </div>
 
