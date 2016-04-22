@@ -1,6 +1,5 @@
 <div class='activeIncidentTagList'>
-    @foreach ($tags as $tag)
-        @if ($tag->incident_id == $log_entry->incident->id)
+    @foreach ($log_entry->incident->tags as $tag)
             <div class='tags'>
                 <form method="POST" action="{{ route('tag.destroy', ['id'=>$tag->id]) }}" class='deleteTagForm'>
                     {{ csrf_field() }}
@@ -13,7 +12,6 @@
                     {{ $tag->type->name }}
                 </div>
             </div>
-        @endif
     @endforeach
 </div> 
 <div class="newTagMenu" style='clear:both;'>

@@ -1,6 +1,5 @@
 <div class='activeRoutineTagList'>
-    @foreach ($tags as $tag)
-        @if ($tag->routine_id == $log_entry->routine->id)
+    @foreach ($log_entry->routine->tags as $tag)
             <span class='tags'>
                 <form method="POST" action="{{ route('tag.destroy', ['id'=>$tag->id])}}" class='deleteTagForm'>
                     {{ csrf_field() }}
@@ -13,7 +12,6 @@
                     {{ $tag->type->name }}
                 </div>
             </span>
-        @endif
     @endforeach
 <div class="newTagMenu" style='clear:both;'>
 <input type='button' id='showNewRoutineTags{{ $log_entry->routine_id }}' 

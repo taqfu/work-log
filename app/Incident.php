@@ -12,4 +12,7 @@ class Incident extends Model
     public function logEntry(){
         return $this->hasOne('App\LogEntry');
     }
+    public function tags(){
+        return $this->hasMany("App\Tag");
+    }
 }

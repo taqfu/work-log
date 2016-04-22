@@ -17,4 +17,7 @@ class Routine extends Model
     public function type(){
         return $this->belongsTo("App\RoutineType");
     }
+    public function tags(){
+        return $this->hasMany("App\Tag");
+    }
 }
