@@ -13,13 +13,12 @@
                 </div>
             </span>
     @endforeach
-<div class="newTagMenu" style='clear:both;'>
-<input type='button' id='showNewRoutineTags{{ $log_entry->routine_id }}' 
-  class='textButton showNewRoutineTags' value='[ Add Tag ]'/>
-<input type='button' id='hideNewRoutineTags{{ $log_entry->routine_id }}' 
-  class='textButton hideNewRoutineTags' value='[ - ]' />
-</div> 
+    <div class="newTagMenu" style='clear:both;'>
+        <input type='button' id='showNewRoutineTags{{ $log_entry->routine_id }}' 
+          class='textButton showNewRoutineTags' value='[ Add Tag ]'/>
+        <input type='button' id='hideNewRoutineTags{{ $log_entry->routine_id }}' 
+          class='textButton hideNewRoutineTags' value='[ - ]' />
+    </div> 
 </div>
-<div id='newRoutineTags{{ $log_entry->routine_id }}' class='newTagList'>
-</div>
+<div id='newRoutineTags{{ $log_entry->routine_id }}' class='newTagList'></div>
 

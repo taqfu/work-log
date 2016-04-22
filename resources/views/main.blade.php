@@ -24,7 +24,7 @@
     <a href="{{ route('log.index') }}">[ All Entries ]</a>
 </div>
 
-<div>
+<div id='tagForms' style='display:none;'>
     @foreach ($tag_types as $tag_type)
     <form class='newTagForm' method="POST" action="{{ route('tag.store') }}">
         {{ csrf_field () }}         
@@ -37,7 +37,6 @@
     </form>
     <div class='tagSeparator'>/</div>
     @endforeach
-
 </div>
 <div id='newTag' class='form'>  
 @include ('TagType.create')

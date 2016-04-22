@@ -40,7 +40,7 @@ div.logRoutine{
     clear:both;
 }
 
-.form, .newRoutine, .hideNewIncidentTags, .newTagList, .hideNewRoutineTags{
+.form, .newRoutine, .hideNewTags, .newTagList, .hideNewTags{
     display:none;
 }
 .textButton { 

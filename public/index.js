@@ -35,30 +35,25 @@ $(document.body).ready(function () {
         $("#routineTimestamp").prop("checked", true);
     });
     
-    $(document).on("click", ".showNewIncidentTags", function (event) {
-        incidentID = event.target.id.substr(19, event.target.id.length-19); 
-        $("#showNewIncidentTags"+incidentID).hide();
-
-        $("#hideNewIncidentTags"+incidentID).show();
-        $("#newIncidentTags"+incidentID).show();
+    $(document).on("click", ".showNewTags", function (event) {
+        $(".hideNewTags").hide();
+        $(".showNewTags").show();
+        $(".newTagList").html("");
+        logEntryID = event.target.id.substr(11, event.target.id.length-11); 
+        console.log($("#logEntryRoutineID"+logEntryID).val());
+        $("#newTags"+logEntryID).html($("#tagForms").html());
+        $("#newTags"+logEntryID).show();
+        $("#showNewTags"+logEntryID).hide();
+        $("#hideNewTags"+logEntryID).show();
+        $("input[name='logEntryID']").val(logEntryID);
+        $("input[name='routineID']").val($("#logEntryRoutineID"+logEntryID).val());
+        $("input[name='incidentID']").val($("#logEntryIncidentID"+logEntryID).val());
     });
-    $(document).on("click", ".hideNewIncidentTags", function (event) {
-        incidentID = event.target.id.substr(19, event.target.id.length-19); 
-        $("#showNewIncidentTags"+incidentID).show();
-        $("#hideNewIncidentTags"+incidentID).hide();
-        $("#newIncidentTags"+incidentID).hide();
-    });
-    $(document).on("click", ".showNewRoutineTags", function (event) {
-        routineID = event.target.id.substr(18, event.target.id.length-18); 
-        $("#showNewRoutineTags"+routineID).hide();
-        $("#hideNewRoutineTags"+routineID).show();
-        $("#newRoutineTags"+routineID).show();
-    });
-    $(document).on("click", ".hideNewRoutineTags", function (event) {
-        routineID = event.target.id.substr(18, event.target.id.length-18); 
-        $("#showNewRoutineTags"+routineID).show();
-        $("#hideNewRoutineTags"+routineID).hide();
-        $("#newRoutineTags"+routineID).hide();
+    $(document).on("click", ".hideNewTags", function (event) {
+        logEntryID = event.target.id.substr(18, event.target.id.length-18); 
+        $("#showNewTags"+logEntryID).show();
+        $("#hideNewTags"+logEntryID).hide();
+        $("#newTags"+logEntryID).hide();
     });
 });
 

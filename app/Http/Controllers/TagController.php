@@ -16,7 +16,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        var_dump($_GET['id']);
     }
 
     /**

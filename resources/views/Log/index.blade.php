@@ -27,7 +27,7 @@
             <div class='logRoutine'>
                 {{ $log_entry -> routine-> type ->name}} 
             </div>
-            @include ("RoutineTag")
+            @include ("Tags")
         @elseif ($log_entry->incident_id!=0)
             <div class='logIncidentTitle'>Incident Report  </div> 
             <div class='logIncident'>
@@ -38,7 +38,7 @@
                     {!! nl2br($log_entry -> incident -> report) !!} 
                 </div>
             </div>
-            @include ("IncidentTag")
+            @include ("Tags")
         @endif
     </div>
 @endforeach
