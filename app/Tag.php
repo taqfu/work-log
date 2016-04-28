@@ -14,4 +14,7 @@ class Tag extends Model
     public function type(){
         return $this->belongsTo("App\TagType");
     }
+    public function log_entries(){
+        return $this->belongsTo("App\LogEntry", "log_entry_id");
+    }
 }

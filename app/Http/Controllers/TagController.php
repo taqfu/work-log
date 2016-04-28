@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
+use App\LogEntry;
+use App\RoutineType;
+use App\Routine;
 use App\Tag;
-
+use App\TagType;
+use App\Incident;
+use DB;
+use View;
 class TagController extends Controller
 {
     /**
@@ -16,7 +21,6 @@ class TagController extends Controller
      */
     public function index()
     {
-        var_dump($_GET['id']);
     }
 
     /**
@@ -38,12 +42,14 @@ class TagController extends Controller
     public function store(Request $request)
     {
         $tag = new Tag;
+        $tag->type_id = $request->newTagType;
+        $tag->log_entry_id = $request->logEntryID;
+        
         if ($request->incidentID != 0){
             $tag->incident_id = $request->incidentID;
         } else if ($request->routineID != 0){
             $tag->routine_id = $request->routineID;
         }
-        $tag->type_id = $request->newTagType;
         $tag->save();
         return redirect("/work-log/public/$request->route/#entry".$request->logEntryID);
     }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\TagType;
+use View;
 class TagTypeController extends Controller
 {
     /**
@@ -15,7 +16,10 @@ class TagTypeController extends Controller
      */
     public function index()
     {
-        //
+        $id = $_GET['id'];
+        return View :: make('TaggedLogEntries', [
+            "tag_types" => TagType :: where("id", $id)->orderBy("created_at", "asc")->get()
+        ]);
         
     }
 

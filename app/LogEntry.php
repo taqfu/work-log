@@ -17,4 +17,7 @@ class LogEntry extends Model
     public function routine(){
         return $this->belongsTo("App\Routine");
     }
+    public function tags(){
+        return $this->hasMany("App\Tag");
+    }
 }

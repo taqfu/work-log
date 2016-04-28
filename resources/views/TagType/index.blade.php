@@ -6,7 +6,7 @@
            {{ method_field('DELETE') }}
            <input type='submit' value='X' />
         </form> 
-    <a href="{{ route('tag.index', ['id'=>$tag_type->id]) }}">
+    <a href="{{ route('TagType.index', ['id'=>$tag_type->id]) }}">
         {{ $tag_type->name }}
     </a>
     </div>
