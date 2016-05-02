@@ -13,6 +13,7 @@ use App\TagType;
 use App\Incident;
 use DB;
 use View;
+
 class LogEntryController extends Controller
 {
     /**
@@ -98,6 +99,7 @@ class LogEntryController extends Controller
     public function destroy($id)
     {
         $row = DB::table('log_entries')->where("id", $id)->first();
+        Tag::where("log_entry_id", $id)->delete();
         if ($row->routine_id!=0){
             $routine = new Routine;
             $routine->where("id",$row->routine_id)->delete();
