@@ -51,7 +51,7 @@ class TagController extends Controller
             $tag->routine_id = $request->routineID;
         }
         $tag->save();
-        return redirect("/work-log/public/$request->route/#entry".$request->logEntryID);
+        return redirect(env('APP_URL') . "$request->route/#entry".$request->logEntryID);
     }
 
     /**

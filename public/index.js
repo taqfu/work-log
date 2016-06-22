@@ -1,4 +1,5 @@
-
+var onTaqfu = true;
+var siteRoot = onTaqfu ? "http://taqfu.com/dev-env/work-log/public" : "/work-log/public";
 $(document.body).ready(function () {
     $("#incidentNow").prop("checked", true);
     $("#routineNow").prop("checked", true);
@@ -59,18 +60,16 @@ $(document.body).ready(function () {
 
 
 function logRoutine(id, timestamp){
-    console.log(id, timestamp);
     $.ajax({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         method: "POST",
-        url: "/work-log/public/routine",
+        url: siteRoot + "/routine",
         //check just one side can suffice
         data:{id:id, timestamp:timestamp}
     })
         .done(function (result){
-            console.log(result);
             location.reload();
         });
 }
