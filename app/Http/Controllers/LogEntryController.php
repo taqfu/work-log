@@ -107,6 +107,6 @@ class LogEntryController extends Controller
 
         $log_entry = new LogEntry;
         $log_entry->where("id", $id)->delete();
-        return redirect ("/");
+        return back();
     }
 }

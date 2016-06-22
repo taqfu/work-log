@@ -17,7 +17,7 @@
     @endif
     <div class='logEntry'>
         <a name='entry{{ $log_entry->id }}'></a>
-        <form method="POST" action="/work-log/public/log/{{ $log_entry->id }}" class='deleteLogForm'>
+        <form method="POST" action="{{route('log.destroy', ['id'=>$log_entry->id])}}" class='deleteLogForm'>
             {{ csrf_field() }}
             {{  method_field("DELETE") }}
             <input type='hidden' name='logEntryID' value='{{$log_entry->id}}' />

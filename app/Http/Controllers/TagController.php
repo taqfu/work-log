@@ -98,6 +98,6 @@ class TagController extends Controller
     {
         $tag = new Tag;
         $tag->where("id", $id)->delete();
-        return redirect("/work-log/public/$request->route/#entry".$request->logEntryID);
+        return redirect(env('APP_URL') . "/$request->route/#entry".$request->logEntryID);
     }
 }
