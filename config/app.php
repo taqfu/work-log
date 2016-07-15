@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost/work-log/'),
+    'url' => env('APP_URL', 'http://taqfu.com/dev-env/work-log/public/'),
 
     /*
     |--------------------------------------------------------------------------

@@ -51,7 +51,10 @@ class TagController extends Controller
             $tag->routine_id = $request->routineID;
         }
         $tag->save();
-        return redirect(env('APP_URL') . "$request->route/#entry".$request->logEntryID);
+        if ($request->route=="/"){
+            return redirect(env('APP_URL') . "$request->route/#entry".$request->logEntryID);
+        } 
+        return redirect(route($request->route)."#".$request->logEntryID);
     }
 
     /**
@@ -98,6 +101,9 @@ class TagController extends Controller
     {
         $tag = new Tag;
         $tag->where("id", $id)->delete();
-        return redirect(env('APP_URL') . "/$request->route/#entry".$request->logEntryID);
+        if ($request->route=="/"){
+            return redirect(env('APP_URL') . "$request->route/#entry".$request->logEntryID);
+        } 
+        return redirect(route($request->route)."#".$request->logEntryID);
     }
 }

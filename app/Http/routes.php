@@ -14,7 +14,6 @@ use \App\TagType;
 | and give it the controller to call when that URI is requested.
 |
 */
-
 Route::get('/', ["as"=>"today", function () {
     $today = date ("Y-m-d");
     $end_date = "$today 23:59:59";
@@ -30,6 +29,7 @@ Route::get('/', ["as"=>"today", function () {
         
    ]);
 }]);
+
 Route::get('/yesterday', ["as"=>"yesterday", function () {
     $yesterday = date('Y-m-d',strtotime("-1 days"));
     $end_date = "$yesterday 23:59:59";
