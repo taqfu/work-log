@@ -4,7 +4,9 @@
         <form method="POST" action="{{ route('TagType.destroy', ['id'=>$tag_type->id]) }}" class="deleteForm">
            {{ csrf_field() }}
            {{ method_field('DELETE') }}
-           <input type='submit' value='X' />
+           <button type='submit' class='btn btn-danger'>
+                x
+            </button>
         </form> 
     <a href="{{ route('TagType.index', ['id'=>$tag_type->id]) }}">
         {{ $tag_type->name }}

@@ -3,8 +3,9 @@
         <input  id='routineNow' name='routineWhen' type='radio' value='now' checked/>
         Now.
     </div>
-    <div>
-        <input id='routineTimestamp' name='routineWhen' type='radio' value='timestamp'/>
+    <div class='margin-bottom'>
+        <input id='routineTimestamp' name='routineWhen' type='radio' 
+          value='timestamp'/>
         @include ("timestamps", ["timestamp_type"=>"routine"])
     </div>
     @foreach($routine_types as $routine_type)
@@ -13,10 +14,14 @@
               class='deleteRoutineTypeForm'>
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
-                <input type='submit' value='X' /> 
+                <button type='submit' class='btn btn-danger'>
+                    x
+                </button> 
             </form>
-            <input id="routineType{{ $routine_type->id }}" type='button' 
-              class='textButton logRoutine' value='{{ $routine_type->name }}' />   
+            <button id="routineType{{ $routine_type->id }}"  
+              class='logRoutine btn btn-info'>
+                {{ $routine_type->name }}
+            </button>   
         </div>      
     @endforeach 
 @endif

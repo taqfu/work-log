@@ -60,8 +60,7 @@ div.logRoutine{
 }
 .logIncident{
     background-color:grey;
-    width:800px;
-    clear:both;
+clear:both;
     padding:4px;
 }
 .logIncidentTitle{
@@ -87,8 +86,11 @@ margin:0px;
 .activeIncidentTagList{
     margin-top:8px;
 }
-.newTagMenu{
-    padding-top:4px;
+li.tags form{
+    margin-right:28px;
+}
+li.tags form label:hover{
+    cursor:pointer;
 }
 .logEntry{
     margin-bottom:32px;
@@ -97,4 +99,17 @@ margin:0px;
 .tagSeparator{
     float:left;
     margin-right:16px;
+}
+.margin-bottom{
+    margin-bottom:28px;
+}
+.margin-top-2{
+    margin-top:28px;
+}
+
+.page-nav-bar, .menu-nav-bar{
+    font-size:28px;
+}
+.menu-nav-bar{
+    font-size:21px;
 }

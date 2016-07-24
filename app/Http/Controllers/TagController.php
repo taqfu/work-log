@@ -41,6 +41,10 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
+        if (count(Tag::where('type_id', $request->newTagType)
+          ->where('log_entry_id', $request->logEntryID)->get())>0){
+            return back()->withErrors("Log entry is already tagged with this.");
+        }
         $tag = new Tag;
         $tag->type_id = $request->newTagType;
         $tag->log_entry_id = $request->logEntryID;

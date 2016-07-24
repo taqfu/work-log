@@ -29,8 +29,8 @@ class LogEntryController extends Controller
         "routines" => Routine :: orderBy("when", "desc")->get(),
         "routine_types" => RoutineType ::orderBy("name", "asc")-> get(),
         "tag_types" => TagType :: orderBy("name", "asc")->get(),
-        "tags" => Tag :: orderBy("created_at", "asc")->get()
-        
+        "tags" => Tag :: orderBy("created_at", "asc")->get(),
+        "period"=>"all",   
    ]);
     
     }

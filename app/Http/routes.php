@@ -25,8 +25,8 @@ Route::get('/', ["as"=>"today", function () {
           ->orderBy("when", "desc")->get(),
         "routines" => Routine :: orderBy("when", "desc")->get(),
         "tag_types" => TagType :: orderBy("name", "asc")->get(),
-        "tags" => Tag :: orderBy("created_at", "asc")->get()
-        
+        "tags" => Tag :: orderBy("created_at", "asc")->get(),
+        'period'=>'today',
    ]);
 }]);
 
@@ -41,9 +41,15 @@ Route::get('/yesterday', ["as"=>"yesterday", function () {
           ->orderBy("when", "desc")->get(),
         "routines" => Routine :: orderBy("when", "desc")->get(),
         "tag_types" => TagType :: orderBy("name", "asc")->get(),
-        "tags" => Tag :: orderBy("created_at", "asc")->get()
-        
+        "tags" => Tag :: orderBy("created_at", "asc")->get(),
+        'period'=>'yesterday',
    ]);
+}]);
+Route::get('/shifts', ['as'=>'shifts', function(){
+    return View('shifts', [
+        'routines'=>Routine::orWhere('type_id', 2)->orWhere('type_id', 12)
+          ->orderBy('when', 'asc')->get(),
+    ]);
 }]);
 
 Route::resource('incident', 'IncidentController');

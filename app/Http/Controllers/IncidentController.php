@@ -41,8 +41,8 @@ class IncidentController extends Controller
         if ($request->incidentWhen==="now"){
             $when = date("Y-m-d H:i:s");
         } else if ($request->incidentWhen!="now"){
-            $when = $request->year . "-" . $request->month ."-" . $request->day . " " 
-              . $request->hour . ":" . $request->minute . ":00";
+            $when = $request->year . "-" . $request->month ."-" . $request->day 
+              . " " . $request->hour . ":" . $request->minute . ":00";
         }   
         
         $incident = new Incident;
@@ -53,7 +53,7 @@ class IncidentController extends Controller
         $log->when  = $when;
         $log->incident_id = $incident->id;
         $log->save();
-        return redirect ("/");
+        return back();
     }
 
     /**

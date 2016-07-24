@@ -9,6 +9,14 @@
     <link rel="stylesheet" type="text/css" href="index.css">
     <script src="jquery-1.12.3.min.js"> </script>
     <script src="index.js"> </script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <style>
     .form {
         display:none;
@@ -16,16 +24,50 @@
     </style>
 </head>
 <body>
-<div id='menu'>
-    <a href="{{ route('today') }}">[ Home ]</a>
-    <input type='button' class="textButton menuButton" value='[ - ]'/>
-    <input type='button' class="textButton menuButton" value='[ Routine ]'/>
-    <input type='button' class="textButton menuButton" value='[ Incident ]'/>
-    <input type='button' class="textButton menuButton" value='[ Tag ]'/>
-    <a href="{{ route('yesterday') }}">[ Yesterday ]</a>
-    <a href="{{ route('log.index') }}">[ All Entries ]</a>
-</div>
-
+<ul class='nav nav-pills nav-justified page-nav-bar'>
+    <li
+      @if($period=="today")
+          class='active'
+      @endif
+      >
+        <a href="{{ route('today') }}">Today</a>
+    </li>
+    <li
+      @if($period=="yesterday")
+          class='active'
+      @endif
+      >
+        <a href="{{ route('yesterday') }}">Yesterday</a>
+    </li>
+    <li
+      @if($period=="all")
+          class='active'
+      @endif
+      >
+        <a href="{{ route('log.index') }}">All</a>
+    </li>
+    <li
+      @if($period=="shifts")
+          class='active'
+      @endif
+      >
+        <a href="{{ route('shifts') }}">Shifts</a>
+    </li>
+</ul>
+<ul class='nav nav-pills nav-justified margin-top-2 menu-nav-bar'>
+    <li class='text-center'>
+        <input type='button' class="textButton menuButton" value='Routine'/>
+    </li>
+    <li class='text-center'>
+        <input type='button' class="textButton menuButton" value='Incident'/>
+    </li>
+    <li class='text-center'>
+        <input type='button' class="textButton menuButton" value='Tag'/>
+    </li>
+    <li class='text-center'>
+        <input type='button' class="textButton menuButton" value='Hide'/>
+    </li>
+</ul>
 <div id='tagForms' style='display:none;'>
     @foreach ($tag_types as $tag_type)
     <form class='newTagForm' method="POST" action="{{ route('tag.store') }}">

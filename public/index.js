@@ -4,16 +4,18 @@ $(document.body).ready(function () {
     $("#incidentNow").prop("checked", true);
     $("#routineNow").prop("checked", true);
     $(".menuButton").click(function(event){
-        $(".form").hide();
-        if (event.target.value=="[ Routine ]"){
-            $("#newRoutine").show();
-        } else if (event.target.value=="[ Incident ]"){
-            $("#newIncident").show();
-        } else if (event.target.value=="[ Tag ]"){
-            $("#newTag").show();
-        }
+        console.log("ASDFASD");
     });
     $(document).on("click", ".menuButton", function (event) {
+        console.log("ASDFASD");
+        $(".form").hide();
+        if (event.target.value=="Routine"){
+            $("#newRoutine").show();
+        } else if (event.target.value=="Incident"){
+            $("#newIncident").show();
+        } else if (event.target.value=="Tag"){
+            $("#newTag").show();
+        }
         $("#incidentNow").prop("checked", true);
         $("#routineNow").prop("checked", true);
     });

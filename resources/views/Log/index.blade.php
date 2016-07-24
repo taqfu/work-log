@@ -21,7 +21,9 @@
             {{ csrf_field() }}
             {{  method_field("DELETE") }}
             <input type='hidden' name='logEntryID' value='{{$log_entry->id}}' />
-            <input type='submit' value="X" />
+            <button type='submit' class='btn btn-danger'>
+                x
+            </button>
         </form>
         @if ($log_entry->routine_id!=0)
             <div class='logRoutine'>
@@ -30,7 +32,7 @@
             @include ("Tags")
         @elseif ($log_entry->incident_id!=0)
             <div class='logIncidentTitle'>Incident Report  </div> 
-            <div class='logIncident'>
+            <div class='logIncident col-lg-6'>
                 <div class='incidentCreatedAt'>
                     Created {{$log_entry->created_at}}
                 </div>
