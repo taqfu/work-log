@@ -77,9 +77,10 @@
         <input type='hidden' name='incidentID' />
         <input type='hidden' name='routineID'  />
         <input type='hidden' name='logEntryID' />
-        <input type='submit' class='textButton' value='{{ $tag_type->name }}' />
+        <button type='submit' class='btn btn-info'>
+            {{ $tag_type->name }}
+        </button>
     </form>
-    <div class='tagSeparator'>/</div>
     @endforeach
 </div>
 <div id='newTag' class='form'>  

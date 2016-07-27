@@ -1,5 +1,3 @@
-
-    
 <div class='activeTagList'>
     <?php 
         if ($log_entry->routine_id!=0) {

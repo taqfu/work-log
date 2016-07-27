@@ -39,24 +39,23 @@ $(document.body).ready(function () {
     });
     
     $(document).on("click", ".showNewTags", function (event) {
-        $(".hideNewTags").hide();
-        $(".showNewTags").show();
+        $(".hideNewTags").addClass('hidden');
+        $(".showNewTags").removeClass('hidden');
         $(".newTagList").html("");
         logEntryID = event.target.id.substr(11, event.target.id.length-11); 
-        console.log($("#logEntryRoutineID"+logEntryID).val());
         $("#newTags"+logEntryID).html($("#tagForms").html());
-        $("#newTags"+logEntryID).show();
-        $("#showNewTags"+logEntryID).hide();
-        $("#hideNewTags"+logEntryID).show();
+        $("#newTags" + logEntryID).show();
+        $("#showNewTags"+logEntryID).addClass('hidden');
+        $("#hideNewTags"+logEntryID).removeClass('hidden');
         $("input[name='logEntryID']").val(logEntryID);
         $("input[name='routineID']").val($("#logEntryRoutineID"+logEntryID).val());
         $("input[name='incidentID']").val($("#logEntryIncidentID"+logEntryID).val());
     });
     $(document).on("click", ".hideNewTags", function (event) {
         logEntryID = event.target.id.substr(18, event.target.id.length-18); 
-        $("#showNewTags"+logEntryID).show();
-        $("#hideNewTags"+logEntryID).hide();
-        $("#newTags"+logEntryID).hide();
+        $(".hideNewTags").addClass('hidden');
+        $(".showNewTags").removeClass('hidden');
+        $(".newTagList").html("");
     });
 });
 
