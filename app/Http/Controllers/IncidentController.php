@@ -53,7 +53,7 @@ class IncidentController extends Controller
         $log->when  = $when;
         $log->incident_id = $incident->id;
         $log->save();
-        return back();
+        return redirect(redirect()->getUrlGenerator()->previous());
     }
 
     /**

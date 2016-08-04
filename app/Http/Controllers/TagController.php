@@ -58,7 +58,7 @@ class TagController extends Controller
         if ($request->route=="/"){
             return redirect(env('APP_URL') . "$request->route/#entry".$request->logEntryID);
         } 
-        return redirect(route($request->route)."#".$request->logEntryID);
+        return redirect(route($request->route)."#entry".$request->logEntryID);
     }
 
     /**

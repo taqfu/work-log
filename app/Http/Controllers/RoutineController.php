@@ -50,8 +50,7 @@ class RoutineController extends Controller
         $log->when  = $when;
         $log->routine_id = $routine->id;
         $log->save();
-        return redirect ("/");
-
+        return redirect(redirect()->getUrlGenerator()->previous());
     }
 
     /**
@@ -97,8 +96,7 @@ class RoutineController extends Controller
     public function destroy($id)
     {
         Routine :: where("id", $id)->delete();
-        return redirect ("/");
-
+        return redirect(redirect()->getUrlGenerator()->previous());
     }
 
 }
