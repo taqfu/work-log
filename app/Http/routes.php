@@ -48,7 +48,7 @@ Route::get('/yesterday', ["as"=>"yesterday", function () {
 Route::get('/shifts', ['as'=>'shifts', function(){
     return View('shifts', [
         'routines'=>Routine::orWhere('type_id', 2)->orWhere('type_id', 12)
-          ->orderBy('when', 'asc')->get(),
+          ->orderBy('when', 'desc')->get(),
     ]);
 }]);
 
