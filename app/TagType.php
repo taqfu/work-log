@@ -12,6 +12,6 @@ class TagType extends Model
     protected $dates =["deleted_at"];
 
     public function tag(){
-        return $this->hasMany("App\Tag", "type_id");
+        return $this->hasMany("App\Tag", "type_id")->orderBy('created_at', 'desc');
     }
 }

@@ -18,9 +18,9 @@ class TagTypeController extends Controller
     {
         $id = $_GET['id'];
         return View :: make('TaggedLogEntries', [
-            "tag_types" => TagType :: where("id", $id)->orderBy("created_at", "asc")->get()
+            "tag_types" => TagType :: where("id", $id)->orderBy("created_at", "desc")->get()
         ]);
-        
+
     }
 
     /**
@@ -46,7 +46,7 @@ class TagTypeController extends Controller
         $tag_type->save();
         return redirect("/");
     }
-    
+
 
     /**
      * Display the specified resource.
