@@ -12,10 +12,10 @@
         <?php $old_date = $date; ?>
     @endif
     @if ($old_time!=$time)
-        <h3>{{ $time }}</h3>
+        <h3 class=' row'>{{ $time }}</h3>
         <?php $old_time = $time; ?>
     @endif
-    <div class='logEntry'>
+    <div class='logEntry row'>
         <a name='entry{{ $log_entry->id }}'></a>
         <form method="POST" action="{{route('log.destroy', ['id'=>$log_entry->id])}}" class='deleteLogForm'>
             {{ csrf_field() }}
@@ -27,20 +27,25 @@
         </form>
         @if ($log_entry->routine_id!=0)
             <div class='logRoutine'>
-                {{ $log_entry -> routine-> type ->name}} 
+                {{ $log_entry -> routine-> type ->name}}
             </div>
             @include ("Tags")
         @elseif ($log_entry->incident_id!=0)
-            <div class='logIncidentTitle'>Incident Report  </div> 
-            <div class='logIncident col-lg-6'>
-                <div class='incidentCreatedAt'>
-                    Created {{$log_entry->created_at}}
+
+            <div class=''>
+                <div class='logIncidentTitle'>Incident Report  </div>
+                <div class='logIncident well'>
+                    <div class='incidentCreatedAt'>
+                        Created {{$log_entry->created_at}}
+                    </div>
+                    <div class='incidentReport'>
+                        {!! nl2br($log_entry -> incident -> report) !!}
+                    </div>
                 </div>
-                <div class='incidentReport'>
-                    {!! nl2br($log_entry -> incident -> report) !!} 
-                </div>
+                @include ("Tags")
+
             </div>
-            @include ("Tags")
+
         @endif
     </div>
 @endforeach
