@@ -23,16 +23,16 @@ class LogEntryController extends Controller
      */
     public function index()
     {
-    
-    return View :: make('main', [
+
+    return View :: make('Log.index', [
         "log_entries" => LogEntry ::orderBy("when", "desc")->get(),
         "routines" => Routine :: orderBy("when", "desc")->get(),
         "routine_types" => RoutineType ::orderBy("name", "asc")-> get(),
         "tag_types" => TagType :: orderBy("name", "asc")->get(),
         "tags" => Tag :: orderBy("created_at", "asc")->get(),
-        "period"=>"all",   
+        "period"=>"all",
    ]);
-    
+
     }
 
     /**

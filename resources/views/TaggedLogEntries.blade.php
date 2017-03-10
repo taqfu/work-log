@@ -1,26 +1,5 @@
-
-<html>
-<head>
-    <title>
-        Work Log
-    </title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" type="text/css" href="index.css">
-    <script src="jquery-1.12.3.min.js"> </script>
-    <script src="index.js"> </script>
-    <style>
-    .form {
-        display:none;
-    }
-    </style>
-</head>
-<body>
-<div id='menu'>
-    <a href="{{ route('today') }}">[ Home ]</a>
-    <a href="{{ route('yesterday') }}">[ Yesterday ]</a>
-    <a href="{{ route('log.index') }}">[ All Entries ]</a>
-</div>
-<div style="clear:both;margin-top:16px;">
+@extends('master')
+@section('content')
 <?php $old_date=0; ?>
 @foreach ($tag_types as $tag_type)
 <h1>
@@ -28,7 +7,7 @@
 </h1>
 
     @foreach ($tag_type->tag as $tag)
-    
+
         @if ($tag->log_entries->routine_id!=0)
             <?php $when = date("m/d/y", strtotime($tag->log_entries->routine->when)) ?>
             @if ($when != $old_date)
@@ -61,6 +40,5 @@
         @endif
     @endforeach
 @endforeach
-</div>
-</body>
-</html>
+
+@endsection
